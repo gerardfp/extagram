@@ -7,7 +7,7 @@
     <label for="file">
         <img id="preview" src="https://static.extagram.edt/preview.svg">
     </label>
-    <input type="submit" value="Publicar">
+    <input type="submit" value="Publish">
 </form>
 <?php
 $db = new mysqli("db.extagram.edt", "extagram_admin", "pass123", "extagram_db");
