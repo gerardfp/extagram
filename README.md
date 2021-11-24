@@ -8,6 +8,6 @@
  
 ## Server
 
-    docker compose up -d
+    docker-compose up -d
     
     chmod 777 uploads
