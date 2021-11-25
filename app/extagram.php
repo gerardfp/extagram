@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="https://static.extagram.edt/style.css">
 
-<form method="POST" enctype="multipart/form-data" action="upload.php">
+<form method="POST" enctype="multipart/form-data" action="upload">
     <input type="text" name="post" placeholder="Write something...">
     <input id="file" type="file" name="photo" onchange="document.getElementById('preview').src=window.URL.createObjectURL(event.target.files[0])">
     <label for="file">

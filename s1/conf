@@ -7,6 +7,7 @@ server {
     root /var/www/html;
 
     rewrite ^/$ /extagram.php last;
+    rewrite ^(.*)$ $1.php last;
 
     location / {
         
