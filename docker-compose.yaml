@@ -2,6 +2,11 @@ version: '3'
 services:
   s1:
     build: s1
+    depends_on:
+      - "s2"
+      - "s4"
+      - "s4b"
+      - "s5"
     ports:
       - 443:443
     networks:
