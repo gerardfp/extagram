@@ -1,7 +1,10 @@
-version: '3'
+version: '3.8'
 services:
   s1:
-    build: s1
+    image: 192.168.122.209:5000/images1
+    build:
+      context: .
+      dockerfile: ./Dockerfile_s1
     depends_on:
       - "s2"
       - "s4"
@@ -9,53 +12,41 @@ services:
       - "s5"
     ports:
       - 443:443
-    networks:
-      - app-network
   s2:
-    build: s2
+    image: 192.168.122.209:5000/images2
+    build:
+      context: .
+      dockerfile: ./Dockerfile_s2
     depends_on:
       - "s6"
-    expose:
-      - 9000
-    networks:
-      - app-network
-    links:
-      - "s6:db.extagram.edt"
-    volumes:
-      - ./app/extagram.php:/var/www/html/extagram.php
   s4:
-    build: s4
+    image: 192.168.122.209:5000/images4
+    build:
+      context: .
+      dockerfile: ./Dockerfile_s4
     depends_on:
       - "s6"
-    expose:
-      - 9000
     volumes:
       - ./uploads:/var/www/html/uploads
-      - ./app/upload.php:/var/www/html/upload.php
-    networks:
-      - app-network
     links:
       - "s6:db.extagram.edt"
   s4b:
-    build: s4b
-    expose:
-      - 80
+    image: 192.168.122.209:5000/images4b
+    build:
+      context: .
+      dockerfile: ./Dockerfile_s4b
     volumes:
       - ./uploads:/var/www/html
-    networks:
-      - app-network
   s5:
-    build: s5
-    expose:
-      - 80
-    volumes:
-      - ./app/static:/var/www/html
-    networks:
-      - app-network
+    image: 192.168.122.209:5000/images5
+    build:
+      context: .
+      dockerfile: ./Dockerfile_s5
   s6:
-    build: s6
-    expose:
-      - 3306
+    image: 192.168.122.209:5000/images6
+    build:
+      context: .
+      dockerfile: ./Dockerfile_s6
     environment:
       MYSQL_DATABASE: extagram_db
       MYSQL_ROOT_PASSWORD: password
@@ -63,8 +54,3 @@ services:
       MYSQL_PASSWORD: pass123
     volumes:
       - ./dbdata:/var/lib/mysql
-    networks:
-      - app-network
-networks:
-  app-network:
-    driver: bridge
