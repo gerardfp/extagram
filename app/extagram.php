@@ -10,7 +10,7 @@
     <input type="submit" value="Publish">
 </form>
 <?php
-$db = new mysqli("db.extagram.edt", "extagram_admin", "pass123", "extagram_db");
+$db = new mysqli("s6", "extagram_admin", "pass123", "extagram_db");
 
 foreach ($db->query("SELECT * FROM posts") as $fila) {
     echo "<div class='post'>";
