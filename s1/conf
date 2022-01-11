@@ -10,7 +10,6 @@ server {
     rewrite ^(.*)$ $1.php last;
 
     location / {
-        
         fastcgi_pass s2:9000;
         include fastcgi.conf;
     }
@@ -21,6 +20,7 @@ server {
     }
 }
 
+
 server {
     listen 443 ssl;
     ssl_certificate /etc/ssl/certs/site.pem;
@@ -28,7 +28,7 @@ server {
 
     root /var/www/html;
 
-    server_name static.extagram.edt;
+    server_name storage.extagram.edt;
 
     location / {
         proxy_pass http://s5;
@@ -42,9 +42,9 @@ server {
 
     root /var/www/html;
 
-    server_name storage.extagram.edt;
+    server_name static.extagram.edt;
 
     location / {
-        proxy_pass http://s4b;
+        proxy_pass http://s6;
     }
 }

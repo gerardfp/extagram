@@ -1,2 +1,2 @@
-FROM mysql
-COPY schema.sql /docker-entrypoint-initdb.d/
+FROM nginx:alpine
+COPY conf /etc/nginx/conf.d/default.conf
