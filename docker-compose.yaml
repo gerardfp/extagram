@@ -1,0 +1,36 @@
+version: '3'
+services:
+  s1:
+    image: nginx:alpine
+    ports:
+      - 443:443
+    configs:
+      - source: configuracion_del_s1
+        target: /etc/nginx/conf.d/default.conf
+    secrets:
+      - source: clave_del_https
+        target: /etc/ssl/private/site.key
+      - source: certificado_del_https
+        target: /etc/ssl/certs/site.pem
+  s2:
+    image: php:fpm
+  s4:
+    image: php:fpm
+  s5:
+    image: nginx:alpine
+  s6:
+    image: extagram_s6
+    configs:
+      - source: configuracion_del_s6
+        target: /etc/nginx/conf.d/default.conf
+
+configs:
+  configuracion_del_s6:
+    file: ./s6/conf    
+  configuracion_del_s1:
+    file: ./s1/conf
+secrets:
+  clave_del_https:
+    file: ./s1/site.key
+  certificado_del_https:
+    file: ./s1/site.pem
