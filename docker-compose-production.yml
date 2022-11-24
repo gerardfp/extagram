@@ -1,0 +1,52 @@
+version: '3.3'
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: proxy/Dockerfile.production
+    depends_on:
+      - home
+      - upload
+      - storage
+      - static
+    ports:
+      - 443:443
+  home:
+    build:
+      context: .
+      dockerfile: home/Dockerfile.production
+    depends_on:
+      - database
+  upload:
+    build:
+      context: .
+      dockerfile: upload/Dockerfile.production
+    depends_on:
+      - database
+    volumes:
+      - images:/var/www/html/upload/images
+  storage:
+    build:
+      context: .
+      dockerfile: storage/Dockerfile.production
+    volumes:
+      - images:/var/www/html/storage/
+  static:
+    build:
+      context: .
+      dockerfile: static/Dockerfile.production
+  database:
+    build:
+      context: .
+      dockerfile: database/Dockerfile.production
+    environment:
+      MYSQL_DATABASE: extagram_db
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: extagram_admin
+      MYSQL_PASSWORD: pass123
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
+  images:
