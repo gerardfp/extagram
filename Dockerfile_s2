@@ -1,2 +1,0 @@
-FROM gerardfp/my_php_mysqli
-COPY app/extagram.php /var/www/html/extagram.php

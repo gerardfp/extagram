@@ -1,13 +1,12 @@
 # extagram
 
-## Client `/etc/hosts` file
 
-    192.168.122.1  extagram.edt static.extagram.edt storage.extagram.edt
+## Development
+```
+docker compose up
+```
 
-* Replace `192.168.122.1` with server IP
- 
-## Server
-
-    docker-compose up -d
-    
-    chmod 777 uploads
+## Production
+```
+docker compose -f docker-compose-production.yaml up
+```

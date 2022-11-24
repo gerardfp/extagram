@@ -1,2 +1,0 @@
-FROM gerardfp/my_php_mysqli
-COPY app/upload.php /var/www/html/upload.php
